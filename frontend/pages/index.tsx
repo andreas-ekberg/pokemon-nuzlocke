@@ -44,7 +44,21 @@ export default function Home() {
           <img src={pokemon.img} />
         </>
         )}</div>
-        <TeamMember name="GNU"></TeamMember>
+        <div className="teamContainer" style={{
+          display: "flex",
+          width: "30rem",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-around"
+        }}>
+          <TeamMember name="GNU"></TeamMember>
+          <TeamMember name="GNU"></TeamMember>
+          <TeamMember name="GNU"></TeamMember>
+          <TeamMember name="GNU"></TeamMember>
+          <TeamMember name="GNU"></TeamMember>
+          <TeamMember name="GNU"></TeamMember>
+        </div>
+
       </div>
 
     </>
