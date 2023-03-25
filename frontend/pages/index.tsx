@@ -2,6 +2,7 @@
 import react, { useState, FunctionComponent } from 'react'
 import axios from 'axios'
 import TeamMember from './Components/TeamMember';
+import PokemonPicker from './Components/PokemonPicker';
 
 export default function Home() {
   const [pokemonName, setPokemonName] = useState<string>();
@@ -34,7 +35,7 @@ export default function Home() {
         <h1>Nuzlocke Helper!</h1>
       </div>
       <div style={{
-        float: "left"
+        width: "50rem",
       }}>
         <h2>My team</h2>
         <input type="text" onChange={(event) => setPokemonName(event.target.value)}></input>
@@ -44,11 +45,21 @@ export default function Home() {
           <img src={pokemon.img} />
         </>
         )}</div>
+
+        {/*Pokemon chooser stuff*/}
+        <div style={{
+          float: "right"
+        }}>
+          <PokemonPicker></PokemonPicker>
+        </div>
+
+
+        {/*Pokemon team stuff*/}
+
         <div className="teamContainer" style={{
           display: "flex",
           width: "30rem",
-          flexDirection: "row",
-          flexWrap: "wrap",
+          flexFlow: "row wrap",
           justifyContent: "space-around"
         }}>
           <TeamMember name="GNU"></TeamMember>
@@ -57,9 +68,12 @@ export default function Home() {
           <TeamMember name="GNU"></TeamMember>
           <TeamMember name="GNU"></TeamMember>
           <TeamMember name="GNU"></TeamMember>
+
         </div>
 
+
       </div>
+
 
     </>
   )
