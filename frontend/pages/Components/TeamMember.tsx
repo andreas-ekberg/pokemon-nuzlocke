@@ -2,10 +2,11 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 interface teamMemberProp {
-    name: string
+    pokemonName: string,
+
 };
 
-export default function TeamMember({ name }: teamMemberProp) {
+export default function TeamMember({ pokemonName }: teamMemberProp) {
     const [pokemonChosen, setPokemonChosen] = useState(false);
     const [pokemon, setPokemon] = useState<any>({
         name: "",

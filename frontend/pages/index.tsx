@@ -1,5 +1,5 @@
 
-import react, { useState, FunctionComponent } from 'react'
+import react, { useState, useEffect } from 'react'
 import axios from 'axios'
 import TeamMember from './Components/TeamMember';
 import PokemonPicker from './Components/PokemonPicker';
@@ -12,15 +12,14 @@ export default function Home() {
     img: ""
   });
 
-
-  //Pokemon request
-  const requestPokemon = () => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response) => {
-      setPokemon({ name: response.data.species.name, img: response.data.sprites.front_default })
-
-    });
-    setPokemonChosen(true);
-  }
+  useEffect(() => {
+    (async () => {
+      const response = await fetch('api/team', { method: 'GET' });
+      const data = await response.json();
+      console.log("Team", data);
+      setPokemon({ name: data.members.slot1.name, img: data.members.slot1.img });
+    })();
+  }, []);
 
 
   return (
@@ -39,12 +38,11 @@ export default function Home() {
       }}>
         <h2>My team</h2>
         <input type="text" onChange={(event) => setPokemonName(event.target.value)}></input>
-        <button onClick={requestPokemon} />
-        <div>{!pokemonChosen ? (<div>no pokemon</div>) : (<>
-          <div>{pokemon.name}</div>
-          <img src={pokemon.img} />
-        </>
-        )}</div>
+
+
+
+        <div>{pokemon.name}</div>
+        <img src={pokemon.img} />
 
         {/*Pokemon chooser stuff*/}
         <div style={{
@@ -62,12 +60,7 @@ export default function Home() {
           flexFlow: "row wrap",
           justifyContent: "space-around"
         }}>
-          <TeamMember name="GNU"></TeamMember>
-          <TeamMember name="GNU"></TeamMember>
-          <TeamMember name="GNU"></TeamMember>
-          <TeamMember name="GNU"></TeamMember>
-          <TeamMember name="GNU"></TeamMember>
-          <TeamMember name="GNU"></TeamMember>
+          <TeamMember pokemonName=""></TeamMember>
 
         </div>
 
@@ -78,3 +71,11 @@ export default function Home() {
     </>
   )
 }
+
+/*Conditional rendering.
+<div>{!pokemonChosen ? (<div>no pokemon</div>) : (<>
+          <div>{pokemon.name}</div>
+          <img src={pokemon.img} />
+        </>
+        )}</div>        
+*/
