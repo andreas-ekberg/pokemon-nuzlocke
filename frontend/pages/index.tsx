@@ -5,7 +5,6 @@ import TeamMember from './Components/TeamMember';
 import PokemonPicker from './Components/PokemonPicker';
 
 export default function Home() {
-  const [pokemonName, setPokemonName] = useState<string>();
   const [pokemonChosen, setPokemonChosen] = useState(false);
   const [pokemon, setPokemon] = useState<any>({
     name: "",
@@ -37,7 +36,6 @@ export default function Home() {
         width: "50rem",
       }}>
         <h2>My team</h2>
-        <input type="text" onChange={(event) => setPokemonName(event.target.value)}></input>
 
 
 
